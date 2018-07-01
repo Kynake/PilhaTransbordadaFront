@@ -19,6 +19,5 @@ export class QuestionComponent implements OnInit {
 
   async ngOnInit() {
     this.question = await this.questionsService.getQuestionByID(this.route.snapshot.params['id'])
-    console.log(this.question)
   }
 }
