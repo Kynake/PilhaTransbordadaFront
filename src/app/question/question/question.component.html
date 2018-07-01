@@ -9,6 +9,8 @@
         <app-vote [score]="question.score"></app-vote>
       </td>
       <td>
+        {{question.user.name}}
+        <hr />
         <div *ngFor="let p of question.content">
           <p>{{p}}</p>
         </div>

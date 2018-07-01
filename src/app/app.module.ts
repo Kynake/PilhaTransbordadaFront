@@ -21,6 +21,7 @@ import { QuestionsService } from './question/questions.service'
 //Outros
 import { ROUTES } from './app.routes';
 import { AnswerComponent } from './answer/answer/answer.component';
+import { UserComponent } from './user/user/user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AnswerComponent } from './answer/answer/answer.component';
     VoteComponent,
     QuestionListComponent,
     CommentComponent,
-    AnswerComponent
+    AnswerComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
