@@ -19,7 +19,8 @@ import { CommentComponent }      from './comment/comment/comment.component'
 import { QuestionsService } from './question/questions.service'
 
 //Outros
-import { ROUTES } from './app.routes'
+import { ROUTES } from './app.routes';
+import { AnswerComponent } from './answer/answer/answer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ROUTES } from './app.routes'
     QuestioncardComponent,
     VoteComponent,
     QuestionListComponent,
-    CommentComponent
+    CommentComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,

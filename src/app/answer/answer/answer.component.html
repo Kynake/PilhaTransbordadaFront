@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <td>
+      <app-vote [score]="answer.score"></app-vote>
+    </td>
+    <td>
+      <div *ngFor="let p of answer.content">
+        <p>{{p}}</p>
+      </div>
+    </td>
+  </tr>
+  </table>
+  <table *ngFor="let c of answer.comments">
+    <tr>
+      <app-comment [comment]="c"></app-comment>
+    </tr>
+</table>

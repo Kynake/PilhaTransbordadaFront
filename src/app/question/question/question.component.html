@@ -20,5 +20,22 @@
       <app-comment [comment]="c"></app-comment>
     </tr>
   </table>
-  <hr />
+
+  <div *ngIf="question.correctAnswer">
+    <hr />
+    <h2>Resposta:</h2>
+    <app-answer [answer]="question.correctAnswer"></app-answer>
+  </div>
+
+  <h2 *ngIf="question.otherAnswers">Outras Respostas:</h2>
+  <div *ngFor="let a of question.otherAnswers">
+      <hr />
+      <app-answer [answer]="a"></app-answer>
+  </div>
+
+</div>
+
+
+<div *ngIf="!question">
+  <h1>Carregando...</h1>
 </div>
