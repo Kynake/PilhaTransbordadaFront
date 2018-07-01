@@ -1,8 +1,10 @@
+//Imports Externos
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute }    from '@angular/router'
 
-import { Question } from '../model/question.model'
-import { QuestionsService } from '../backend/questions/questions.service'
+//Imports Internos
+import { Question }         from '../question.model'
+import { QuestionsService } from '../questions.service'
 
 @Component({
   selector: 'app-question',
@@ -16,7 +18,6 @@ export class QuestionComponent implements OnInit {
   constructor(private questionsService: QuestionsService, private route: ActivatedRoute) {}
 
   async ngOnInit() {
-    console.log('question component log');
     this.question = await this.questionsService.getQuestionByID(this.route.snapshot.params['id'])
     console.log(this.question)
   }

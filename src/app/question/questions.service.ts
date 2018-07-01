@@ -1,7 +1,9 @@
+//Imports Externos
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 
-import { Question } from '../../model/question.model'
+//Imports Internos
+import { Question } from './question.model'
 
 @Injectable()
 export class QuestionsService {
@@ -35,7 +37,6 @@ export class QuestionsService {
   }
 
   async getQuestionByID(id: number): Promise<Question> {
-    console.log('questions service log');
     return this.questionList[id-1]
   }
 

@@ -1,6 +1,8 @@
+//Imports Externos
 import { Component, OnInit, Input } from '@angular/core'
 
-import { Question } from '../model/question.model'
+//Imports Internos
+import { Question } from '../question.model'
 
 @Component({
   selector: 'app-questioncard',
