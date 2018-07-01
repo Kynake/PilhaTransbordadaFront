@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 
 import { Question } from '../model/question.model'
+import { QuestionsService } from '../backend/questions/questions.service'
 
 @Component({
   selector: 'app-question-list',
@@ -9,31 +10,12 @@ import { Question } from '../model/question.model'
 })
 export class QuestionListComponent implements OnInit {
 
-  questionList: Question[] = [
-    {
-      id: 1,
-      title: 'Como subir a API pro Heroku?',
-      score: 30,
-      content: ['Eu não to conseguindo fazer integração contínua no Heroku']
-    },
-    {
-      id: 2,
-      title: 'Como clonar um projeto do Github?',
-      score: -54,
-      content: ['Eu não sei procurar no Google','plz ajuda!!!!!!!!!!!']
-    },
-    {
-      id: 3,
-      title: 'Como diferenciar caquis normais de caquis traventos?',
-      score: 945,
-      content: ['Como todos sabemos, Alguns caquis tem poderes mágicos. Eles são capazes de travar a língua antes de serem comidos.', 
-      'Existe alguma maneira de reconhecê-los à vista?']
-    }
-  ]
+  questionList: Question[]
 
-  constructor() { }
+  constructor(private questionsService: QuestionsService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.questionList = await this.questionsService.getQuestions()
   }
 
 }

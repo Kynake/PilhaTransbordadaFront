@@ -1,16 +1,17 @@
-<h1>
-  Essa questão é boa?
-</h1>
-<table>
-  <tr>
-    <td>
-      <app-vote [score]="80"></app-vote>
-    </td>
-    <td>
-      <div>
-        <p>Eu queria saber se essa é uma boa pergunta.</p>
-        <p>Aprecio já desde então.</p>
-      </div>
-    </td>
-  </tr>
-</table>
+<div *ngIf="question">
+  <h1>
+    {{question.title}}
+  </h1>
+  <table>
+    <tr>
+      <td>
+        <app-vote [score]="question.score"></app-vote>
+      </td>
+      <td>
+        <div *ngFor="let p of question.content">
+          <p>{{p}}</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
