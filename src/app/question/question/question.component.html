@@ -2,6 +2,7 @@
   <h1>
     {{question.title}}
   </h1>
+  <hr />
   <table>
     <tr>
       <td>
@@ -14,4 +15,10 @@
       </td>
     </tr>
   </table>
+  <table *ngFor="let c of question.comments">
+    <tr>
+      <app-comment [comment]="c"></app-comment>
+    </tr>
+  </table>
+  <hr />
 </div>

@@ -13,6 +13,7 @@ import { QuestionComponent }     from './question/question/question.component'
 import { QuestioncardComponent } from './question/questioncard/questioncard.component'
 import { QuestionListComponent } from './question/question-list/question-list.component'
 import { VoteComponent }         from './vote/vote.component'
+import { CommentComponent }      from './comment/comment/comment.component'
 
 //Serviços
 import { QuestionsService } from './question/questions.service'
@@ -26,7 +27,8 @@ import { ROUTES } from './app.routes'
     QuestionComponent,
     QuestioncardComponent,
     VoteComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
