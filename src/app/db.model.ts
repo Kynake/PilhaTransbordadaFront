@@ -1,5 +1,14 @@
 import { Question } from "./question/question.model";
 
+export interface APIResponse {
+  success: string,
+  content: any
+}
+
+export const API = 'https://pilha-api.herokuapp.com'
+
+export const KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJicnVuby5tYXp6YXJkbzUyQGdtYWlsLmNvbSIsInNjb3JlIjoxMCwibmFtZSI6IkJydW5vIE1henphcmRvIiwiY3JlYXRlZEF0IjoiMjAxOC0wNy0wMVQxOTo1OTo0OC4wOTBaIiwidXBkYXRlZEF0IjoiMjAxOC0wNy0wMVQxOTo1OTo0OC4wOTBaIn0.jLYUGu9cBU-KfAu1vD47AR9sfq4yoa2EAgK-DPQEOag'
+
 export const QUESTIONS: Question[] = [
   {
     id: 1,
