@@ -1,0 +1,6 @@
+<h1>Login:</h1>
+<form novalidate [formGroup]="loginForm">
+  <input type="type" formControlName="email" placeholder="Email" autofocus>
+</form>
+<button *ngIf="!loading" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+<button *ngIf="loading" [disabled]="true">Carregando...</button>

@@ -1,6 +1,8 @@
 <a [routerLink]="['/']">
   <img src="..\assets\images\pilha transbordada.png" height="80" width="350">
 </a>
+<button [routerLink]="['/login']">Login</button>
+<button (click)="logoff()">Logoff</button>
 
 <router-outlet></router-outlet>
 
