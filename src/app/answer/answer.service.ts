@@ -17,6 +17,7 @@ export class AnswerService {
     const apiResponse: APIResponse = await this.http
     .get<APIResponse>(`${API}/answers/accept/${answerID}`, {headers: headers}).toPromise()
 
+    window.location.reload()
     return apiResponse.content
   }
 
@@ -29,6 +30,7 @@ export class AnswerService {
     const apiResponse: APIResponse = await this.http
     .post<APIResponse>(`${API}/answers/addComment/${answerID}`, {comment: content}, {headers: headers}).toPromise()
 
+    window.location.reload()
     return apiResponse.content
   }
 

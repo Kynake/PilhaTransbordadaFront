@@ -59,6 +59,7 @@ export class QuestionsService {
     const apiResponse: APIResponse = await this.http
       .post<APIResponse>(`${API}/questions/addAnswer/${questionID}`, {answer: {content: content}}, {headers: headers}).toPromise()
 
+    window.location.reload()
     return apiResponse.content
   }
 
@@ -71,6 +72,7 @@ export class QuestionsService {
     const apiResponse: APIResponse = await this.http
       .post<APIResponse>(`${API}/questions/addComment/${questionID}`, {comment: {content: content}}, {headers: headers}).toPromise()
 
+    window.location.reload()  
     return apiResponse.content
   } 
 
