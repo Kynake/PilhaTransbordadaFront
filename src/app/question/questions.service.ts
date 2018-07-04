@@ -79,8 +79,6 @@ export class QuestionsService {
         user: undefined
       }
     }
-
-    return
   }
 
   async deleteQuestion(questionID: number): Promise<Question> {
