@@ -1,19 +1,18 @@
 <table>
   <tr>
     <td>
-      <app-vote [score]="answer.score"></app-vote>
+      <app-vote [score]="answer.score" (upvote)="upvote()" (downvote)="downvote()"></app-vote>
     </td>
     <td>
       {{answer.user.name}}
       <hr />
-      <div *ngFor="let p of answer.content">
-        <p>{{p}}</p>
-      </div>
+      <p>{{answer.content}}</p>
     </td>
   </tr>
-  </table>
-  <table *ngFor="let c of answer.comments">
-    <tr>
-      <app-comment [comment]="c"></app-comment>
-    </tr>
 </table>
+<table *ngFor="let c of answer.comments">
+  <tr>
+    <app-comment [comment]="c"></app-comment>
+  </tr>
+</table>
+<app-create-comment [answerID]="answer.id"></app-create-comment>

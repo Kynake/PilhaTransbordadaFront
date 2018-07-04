@@ -20,12 +20,16 @@ import { CommentComponent }      from './comment/comment/comment.component'
 import { QuestionsService } from './question/questions.service'
 import { AuthService }      from './auth/auth.service'
 import { AuthGuardService } from './auth/auth-guard.service'
+import { AnswerService }    from './answer/answer.service'
 
 //Outros
 import { ROUTES } from './app.routes';
 import { AnswerComponent } from './answer/answer/answer.component';
 import { UserComponent } from './user/user/user.component';
 import { LoginComponent } from './login/login.component';
+import { CreateQuestionComponent } from './question/create-question/create-question.component';
+import { CreateAnswerComponent } from './answer/create-answer/create-answer.component';
+import { CreateCommentComponent } from './comment/create-comment/create-comment.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,10 @@ import { LoginComponent } from './login/login.component';
     CommentComponent,
     AnswerComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    CreateQuestionComponent,
+    CreateAnswerComponent,
+    CreateCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,8 @@ import { LoginComponent } from './login/login.component';
   providers: [
     QuestionsService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    AnswerService
   ],
   bootstrap: [AppComponent]
 })

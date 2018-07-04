@@ -5,15 +5,12 @@ import                                  'rxjs/add/operator/toPromise'
 
 //Imports Internos
 import { Question } from './question.model'
-import { QUESTIONS, API, APIResponse } from '../db.model';
+import { API, APIResponse } from '../db.model';
 import { Answer } from '../answer/answer.model';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class QuestionsService {
-
-  questionList: Question[] = QUESTIONS
-
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   async getQuestions(): Promise<Question[]> {
@@ -24,18 +21,8 @@ export class QuestionsService {
   }
 
   async getQuestionByID(id: number): Promise<Question> {
-
     let response = await this.http.get<APIResponse>(`${API}/questions/${id}`).toPromise()
     response.content.otherAnswers = response.content.answers
-
-    response.content.content = [response.content.content]
-
-    response.content.correctAnswer.content = [response.content.correctAnswer.content]
-
-    for (let i = 0; i < response.content.otherAnswers.length; i++) {
-      response.content.otherAnswers[i].content = [response.content.otherAnswers[i].content]
-    }
-
 
     console.log(response)
     return response.content
@@ -48,7 +35,7 @@ export class QuestionsService {
     }) 
 
     const apiResponse: APIResponse = await this.http
-      .post<APIResponse>(`${API}/questions/create`, question, {headers: headers}).toPromise()
+      .post<APIResponse>(`${API}/questions/create`, {question: question}, {headers: headers}).toPromise()
 
     if(apiResponse.success){
       return apiResponse.content
@@ -62,16 +49,60 @@ export class QuestionsService {
     }
   }
 
-  async deleteQuestion(questionID: number): Promise<Question> {
-    return
+  async createAnswer(questionID: number, content: string) {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.auth.getToken()
+    }) 
+    console.log({answer: {content: content}});
+    
+    const apiResponse: APIResponse = await this.http
+      .post<APIResponse>(`${API}/questions/addAnswer/${questionID}`, {answer: {content: content}}, {headers: headers}).toPromise()
+
+    return apiResponse.content
   }
 
-  async addAnswer(answer: Answer) {
-    return
-  }
+  async createComment(questionID, content: string) {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.auth.getToken()
+    }) 
 
-  async addComment(comment: Comment) {
-    return
+    const apiResponse: APIResponse = await this.http
+      .post<APIResponse>(`${API}/questions/addComment/${questionID}`, {comment: {content: content}}, {headers: headers}).toPromise()
+
+    return apiResponse.content
   } 
 
+  async upvote(questionID: number) {
+    const headers: HttpHeaders = new HttpHeaders({
+      'x-access-token': this.auth.getToken()
+    }) 
+
+    console.log('-------------------');
+    
+    const apiResponse: APIResponse = await this.http
+      .get<APIResponse>(`${API}/questions/upvote/${questionID}`, {headers: headers}).toPromise()
+
+    console.log(apiResponse);
+    
+
+    return apiResponse.content
+  }
+
+  async downvote(questionID: number) {
+    const headers: HttpHeaders = new HttpHeaders({
+      'x-access-token': this.auth.getToken()
+    }) 
+
+    console.log('-------------------');
+    
+    const apiResponse: APIResponse = await this.http
+      .get<APIResponse>(`${API}/questions/downvote/${questionID}`, {headers: headers}).toPromise()
+
+    console.log(apiResponse);
+    
+
+    return apiResponse.content
+  }
 }

@@ -1,0 +1,11 @@
+<h1>Nova Pergunta</h1>
+<!-- <p>{{questionForm.value | json}}</p> -->
+<form novalidate [formGroup]="questionForm" id="questionform">
+  <input type="text" formControlName="title" placeholder="Título" autofocus />
+  <br />
+  <textarea formControlName="content" form="questionform"></textarea>
+</form>
+
+
+<button *ngIf="!loading" (click)="createQuestion()" [disabled]="!questionForm.valid">Criar Pergunta</button>
+<button *ngIf="loading" [disabled]="true">Carregando...</button>

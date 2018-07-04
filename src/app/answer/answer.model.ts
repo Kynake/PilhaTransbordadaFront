@@ -5,6 +5,6 @@ export interface Answer {
   id: number,
   user: User,
   score: number,
-  content: string[],
+  content: string,
   comments: Comment[]
 }

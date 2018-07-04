@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { AuthService } from './auth/auth.service';
+import { CreateQuestionComponent } from './question/create-question/create-question.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'app'
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService
+  ) {}
 
   logoff() {
     this.authService.logoff()

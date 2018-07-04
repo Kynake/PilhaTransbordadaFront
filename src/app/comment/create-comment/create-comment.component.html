@@ -1,0 +1,9 @@
+<h1>Novo Comentario</h1>
+<!-- <p>{{questionForm.value | json}}</p> -->
+<form novalidate [formGroup]="questionForm" id="questionform">
+  <textarea formControlName="content" form="questionform"></textarea>
+</form>
+
+
+<button *ngIf="!loading" (click)="createComment()" [disabled]="!questionForm.valid">Adicionar Comentário</button>
+<button *ngIf="loading" [disabled]="true">Carregando...</button>

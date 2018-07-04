@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core'
 
 //Imports Internos
 import { Question } from '../question.model'
+import { QuestionsService } from '../questions.service';
 
 @Component({
   selector: 'app-questioncard',
@@ -13,9 +14,16 @@ export class QuestioncardComponent implements OnInit {
 
   @Input() question: Question
 
-  constructor() { }
+  constructor(private questionsService: QuestionsService) { }
 
   ngOnInit() {
   }
 
+  upvote() {
+    this.questionsService.upvote(this.question.id)
+  }
+
+  downvote() {
+    this.questionsService.downvote(this.question.id)
+  }
 }

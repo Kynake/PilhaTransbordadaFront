@@ -6,14 +6,12 @@
   <table>
     <tr>
       <td>
-        <app-vote [score]="question.score"></app-vote>
+        <app-vote [score]="question.score" (upvote)="upvote()" (downvote)="downvote()"></app-vote>
       </td>
       <td>
         {{question.user.name}}
         <hr />
-        <div *ngFor="let p of question.content">
-          <p>{{p}}</p>
-        </div>
+        {{question.content}}
       </td>
     </tr>
   </table>
@@ -22,18 +20,22 @@
       <app-comment [comment]="c"></app-comment>
     </tr>
   </table>
+  <app-create-comment [questionID]="question.id"></app-create-comment>
 
   <div *ngIf="question.correctAnswer">
     <hr />
-    <h2>Resposta:</h2>
+    <h2>Resposta Certa:</h2>
     <app-answer [answer]="question.correctAnswer"></app-answer>
   </div>
 
   <h2 *ngIf="question.otherAnswers">Outras Respostas:</h2>
   <div *ngFor="let a of question.otherAnswers">
       <hr />
+      <button (click)="isCorrect(a.id)">Correta</button>
       <app-answer [answer]="a"></app-answer>
   </div>
+
+  <app-create-answer [questionID]="question.id"></app-create-answer>
 
 </div>
 

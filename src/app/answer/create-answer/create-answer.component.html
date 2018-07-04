@@ -1,0 +1,9 @@
+<h1>Nova Resposta</h1>
+<!-- <p>{{questionForm.value | json}}</p> -->
+<form novalidate [formGroup]="questionForm" id="questionform">
+  <textarea formControlName="content" form="questionform"></textarea>
+</form>
+
+
+<button *ngIf="!loading" (click)="createAnswer()" [disabled]="!questionForm.valid">Adicionar Resposta</button>
+<button *ngIf="loading" [disabled]="true">Carregando...</button>

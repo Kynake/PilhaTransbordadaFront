@@ -5,9 +5,9 @@ import { User } from '../user/user.model';
 export interface Question {
   id?: number,
   title: string,
-  user: User,
+  user?: User,
   score?: number,
-  content: string[],
+  content: string,
   comments?: Comment[],
   correctAnswer?: Answer,
   otherAnswers?: Answer[]

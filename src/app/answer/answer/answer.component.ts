@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Answer } from '../answer.model';
+import { AnswerService } from '../answer.service';
 
 @Component({
   selector: 'app-answer',
@@ -11,9 +12,17 @@ export class AnswerComponent implements OnInit {
 
   @Input() answer: Answer
 
-  constructor() { }
+  constructor(private answerService: AnswerService) { }
 
   ngOnInit() {
+  }
+
+  upvote() {
+    this.answerService.upvote(this.answer.id)
+  }
+
+  downvote() {
+    this.answerService.downvote(this.answer.id)
   }
 
 }

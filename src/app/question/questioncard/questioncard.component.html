@@ -1,15 +1,16 @@
 
-<a [routerLink]="['/questions', question.id]">
-  <table>
+<table>
     <tr>
       <td>
-        <app-vote [score]="question.score"></app-vote>
+        <app-vote [score]="question.score" (upvote)="upvote()" (downvote)="downvote()"></app-vote>
       </td>
       <td>
         {{question.user.name}}
         <hr />
-        <h3>{{question.title}}</h3>
+        <a [routerLink]="['/questions', question.id]">
+          <h3>{{question.title}}</h3>
+        </a>
       </td>
     </tr>
   </table>
-</a>
+
