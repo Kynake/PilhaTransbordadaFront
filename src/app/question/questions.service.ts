@@ -5,19 +5,20 @@ import                                  'rxjs/add/operator/toPromise'
 
 //Imports Internos
 import { Question } from './question.model'
-import { QUESTIONS, KEY, API, APIResponse } from '../db.model';
+import { QUESTIONS, API, APIResponse } from '../db.model';
 import { Answer } from '../answer/answer.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class QuestionsService {
 
   questionList: Question[] = QUESTIONS
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   async getQuestions(): Promise<Question[]> {
     const headers: HttpHeaders = new HttpHeaders({
-      'x-access-token': KEY
+      'x-access-token': this.auth.getToken()
     })
 
     let response = await this.http.get<APIResponse>(`${API}/questions`, {headers: headers}).toPromise()
@@ -28,7 +29,7 @@ export class QuestionsService {
 
   async getQuestionByID(id: number): Promise<Question> {
     const headers: HttpHeaders = new HttpHeaders({
-      'x-access-token': KEY
+      'x-access-token': this.auth.getToken()
     })
 
     let response = await this.http.get<APIResponse>(`${API}/questions/${id}`, {headers: headers}).toPromise()
@@ -60,6 +61,25 @@ export class QuestionsService {
   }
 
   async createQuestion(question: Question): Promise<Question> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.auth.getToken()
+    }) 
+
+    const apiResponse: APIResponse = await this.http
+      .post<APIResponse>(`${API}/questions/create`, question, {headers: headers}).toPromise()
+
+    if(apiResponse.success){
+      return apiResponse.content
+    } else {
+      return {
+        id: undefined,
+        content: undefined,
+        title: undefined,
+        user: undefined
+      }
+    }
+
     return
   }
 

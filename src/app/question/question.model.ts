@@ -3,10 +3,10 @@ import { Answer } from '../answer/answer.model';
 import { User } from '../user/user.model';
 
 export interface Question {
-  id: number,
+  id?: number,
   title: string,
   user: User,
-  score: number,
+  score?: number,
   content: string[],
   comments?: Comment[],
   correctAnswer?: Answer,
