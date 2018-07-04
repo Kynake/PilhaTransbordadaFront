@@ -17,35 +17,16 @@ export class QuestionsService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   async getQuestions(): Promise<Question[]> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'x-access-token': this.auth.getToken()
-    })
-
-    let response = await this.http.get<APIResponse>(`${API}/questions`, {headers: headers}).toPromise()
+    let response = await this.http.get<APIResponse>(`${API}/questions`).toPromise()
     console.log(response)
     
     return response.content
   }
 
   async getQuestionByID(id: number): Promise<Question> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'x-access-token': this.auth.getToken()
-    })
 
-    let response = await this.http.get<APIResponse>(`${API}/questions/${id}`, {headers: headers}).toPromise()
-    
-    // delete response.content.RightAnswerId
-    // delete response.content.createdAt
-    // delete response.content.updatedAt
-
-    response.content.comments = response.content.Comments
-    // delete response.content.Comments
-
-    response.content.correctAnswer = response.content.RightAnswer
-    // delete response.content.RightAnswer
-
-    response.content.otherAnswers = response.content.Answers
-    // delete response.content.Answers
+    let response = await this.http.get<APIResponse>(`${API}/questions/${id}`).toPromise()
+    response.content.otherAnswers = response.content.answers
 
     response.content.content = [response.content.content]
 
